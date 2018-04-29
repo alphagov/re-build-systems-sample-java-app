@@ -1,21 +1,38 @@
 pipeline {
-    agent any
+
+    agent none
 
     stages {
-        stage('Test') {
+
+        stage('Build Java artifact') {
+            agent {
+                dockerfile {
+                  filename 'Dockerfile.build'
+                }
+            }
             steps {
-                sh 'mvn test'
+                echo "Building Java artifact"
+                sh 'mvn clean package'
             }
         }
-        stage('Build') {
+
+        stage('Build container image') {
+            agent {
+                dockerfile {
+                  filename 'Dockerfile'
+                }
+            }
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                echo "Building Docker image"
             }
         }
-        stage('Deploy') {
+
+        stage('Tests') {
             steps {
-                echo 'No deployment for now'
+                echo 'Running e2e tests...'
             }
         }
+
+
     }
 }
