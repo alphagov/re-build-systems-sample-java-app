@@ -6,7 +6,7 @@ pipeline {
 
         stage('Build Java artifact') {
             agent {
-                label 'docker-worker-2-java'
+                label 'docker-jnlp-java-agent'
             }
             steps {
                 echo "Building Java artifact"
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build container image') {
             agent {
-                label 'docker-worker-2-java' 
+                label 'docker-jnlp-java-agent' 
             }
             steps {
                 echo "Building Docker image"
