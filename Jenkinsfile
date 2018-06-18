@@ -1,38 +1,27 @@
 pipeline {
 
-    agent none
+    agent {
+        label 'docker-jnlp-java-agent'
+    }
 
     stages {
 
-        stage('Build Java artifact') {
-            agent {
-                dockerfile {
-                  filename 'Dockerfile.build'
-                }
-            }
+        stage('Test') {
             steps {
-                echo "Building Java artifact"
+                sh 'mvn test'
+            }
+        }
+
+        stage('Build') {
+            steps {
                 sh 'mvn clean package'
             }
         }
 
-        stage('Build container image') {
-            agent {
-                dockerfile {
-                  filename 'Dockerfile'
-                }
-            }
+        stage('Publish artefact') {
             steps {
-                echo "Building Docker image"
+                echo "Publishing artefact..."
             }
         }
-
-        stage('Tests') {
-            steps {
-                echo 'Running e2e tests...'
-            }
-        }
-
-
     }
 }
