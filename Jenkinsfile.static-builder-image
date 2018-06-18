@@ -4,31 +4,31 @@ pipeline {
 
     stages {
 
-        stage('Build Java artifact') {
+        stage('Test') {
             agent {
                 label 'docker-jnlp-java-agent'
             }
             steps {
-                echo "Building Java artifact"
+                sh 'mvn test'
+            }
+        }
+
+        stage('Build') {
+            agent {
+                label 'docker-jnlp-java-agent'
+            }
+            steps {
                 sh 'mvn clean package'
             }
         }
 
-        stage('Build container image') {
+        stage('Publish artefact') {
             agent {
-                label 'docker-jnlp-java-agent' 
+                label 'docker-jnlp-java-agent'
             }
             steps {
-                echo "Building Docker image"
+                echo "Publishing artefact..."
             }
         }
-
-        stage('Tests') {
-            steps {
-                echo 'Running e2e tests...'
-            }
-        }
-
-
     }
 }
