@@ -20,7 +20,8 @@ pipeline {
 
         stage('Publish artefact') {
             steps {
-                echo "Publishing artefact..."
+                echo "Just checking the artefact has been created. If so, tag it and publish it should be simple."
+                sh 'ls /home/jenkins/workspace/build-sample-java-app-using-static-builder-image/target/re-build-systems-sample-java-app-1.0.jar'
             }
         }
     }
