@@ -1,6 +1,8 @@
 # ReBuildSystemsSampleJavaApp
 
-This is just a test app (developed with Java Dropwizard) that exposes an endpoint that simply return the text `Hello world!`.
+This is just a dummy app (developed with Java Dropwizard) that exposes an endpoint that simply return the text `Hello world!`.
+
+**DO NOT USE THIS CODE ON PRODUCTION**
 
 How to start the ReBuildSystemsSampleJavaApp application
 ---
