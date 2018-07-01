@@ -20,7 +20,7 @@ pipeline {
 
         stage('Publish artefact') {
             steps {
-                echo "Just checking the artefact has been created. If so, tag it and publish it should be simple."
+                echo "For this demo, just checking the artefact has been created. You should then upload to a store."
                 sh 'ls $WORKSPACE/target/re-build-systems-sample-java-app-1.0.jar'
             }
         }
